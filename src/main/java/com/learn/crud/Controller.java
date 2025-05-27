@@ -3,6 +3,8 @@ package com.learn.crud;
 import java.util.List;
 import java.util.Optional;
 
+import com.learn.crud.exceptions.CustomException;
+import com.learn.crud.service.EmployeeServiceimpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +20,7 @@ import com.learn.crud.service.EmployeeService;
 public class Controller {
 	
 	@Autowired
-	EmployeeService employeeService;
+	EmployeeServiceimpl employeeService;
 	
 	@GetMapping("/hi")
 	public String hello()
@@ -27,7 +29,7 @@ public class Controller {
 	}
 	
 	@PostMapping("/saveEmployee")
-	public Employee save(@RequestBody Employee employee) {
+	public Employee save(@RequestBody Employee employee) throws CustomException {
 		Employee saveEmployee = employeeService.save(employee);
 		return saveEmployee;
 	}
@@ -40,7 +42,7 @@ public class Controller {
 	}
 	
 	@GetMapping("/findById/{id}")
-	public Optional<Employee> findById(@PathVariable("id") Long id) {
+	public Optional<Employee> findById(@PathVariable("id") Long id) throws CustomException {
 		
 		Optional<Employee> employeeByID = employeeService.findById(id);
 		return employeeByID;

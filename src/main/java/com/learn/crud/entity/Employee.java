@@ -15,6 +15,7 @@ public class Employee {
 	private Long id;
 	private String firstName;
 	private String lastName;
+	private String userName;
 	private String role;
 	private String email;
 	private String address;
@@ -23,8 +24,17 @@ public class Employee {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Employee(Long id, String firstName, String lastName, String role, String email, String address,
-			Long salary) {
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public Employee(Long id, String firstName, String lastName, String role, String email, String address, String userName,
+					Long salary) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -33,6 +43,7 @@ public class Employee {
 		this.email = email;
 		this.address = address;
 		this.salary = salary;
+		this.userName=userName;
 	}
 	public Long getId() {
 		return id;

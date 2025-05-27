@@ -8,6 +8,7 @@ import com.learn.crud.entity.Employee;
 
 @Repository
 public interface EmployeeRepo extends JpaRepository<Employee, Long> {
+    Boolean existsByUserName(String userNmae);
 
 	
 }
