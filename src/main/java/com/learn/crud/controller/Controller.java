@@ -1,10 +1,13 @@
-package com.learn.crud;
+package com.learn.crud.controller;
 
 import java.util.List;
 import java.util.Optional;
 
 import com.learn.crud.exceptions.CustomException;
 import com.learn.crud.service.EmployeeServiceimpl;
+
+import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.learn.crud.entity.Employee;
-import com.learn.crud.service.EmployeeService;
+import com.learn.crud.entity.EmployeeDTO;
 
 @RestController
 public class Controller {
@@ -29,8 +32,8 @@ public class Controller {
 	}
 	
 	@PostMapping("/saveEmployee")
-	public Employee save(@RequestBody Employee employee) throws CustomException {
-		Employee saveEmployee = employeeService.save(employee);
+	public Employee save(@RequestBody @Valid EmployeeDTO employeeDto) throws CustomException {
+		Employee saveEmployee = employeeService.save(employeeDto);
 		return saveEmployee;
 	}
 	
@@ -55,7 +58,8 @@ public class Controller {
 	}
 	
 	@DeleteMapping("/deleteById/{id}")
-	public void deleteById(@PathVariable("id") Long id) {
+	public void deleteById(@PathVariable("id") Long id) throws CustomException {
+	
 		employeeService.deleteById(id);
 	}
 }
